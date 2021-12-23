@@ -40,6 +40,7 @@ init python in mas_tts:
                 #Remove any tags that would sound bad but aren't important
                 #Regex causes an instant crash for some reason
                 if (("{fast}" not in speaktext) or ("chu" not in speaktext.lower())):
+                    bypass = False
                     # Implement emphasis
                     speaktext = speaktext.replace("{i}", "<emphasis>").replace("{b}", "<emphasis>")
                     speaktext = speaktext.replace("{/i}", "</emphasis>").replace("{/b}", "</emphasis>")
@@ -49,13 +50,21 @@ init python in mas_tts:
                     for each in enumerate(speaktext):
                         if speaktext[each[0]][:2] == "w=":
                             wait = float(speaktext[each[0]][2:]) * 1.1
-                            speaktext[each[0]] = "<break time=%s/>" % (wait) 
-                    speaktext = "".join([each for each in speaktext if not each.startswith("nw")])
-                    q.put((speaktext, interact))
+                            speaktext[each[0]] = "<break time=%s/>" % (wait)
+                    if "fast" not in speaktext:
+                        speaktext = "".join([each for each in speaktext if not each.startswith("nw")])
+                        if ((isinstance(speaktext, (str, unicode))) and ("chu" not in speaktext.lower())):
+                            q.put((speaktext, interact))
+                    else:
+                        bypass = True
             func(who, what, interact=interact, *args, **kwargs)
             if store.persistent._monika_TTS_enabled:
-                if ((not speaktext.endswith("{fast}")) or ("chu" in speaktext.lower())):
-                    q.join()
+                if not bypass:
+                    try:
+                        if ((isinstance(speaktext, (str, unicode))) and ("chu" not in speaktext.lower())):
+                            q.join()
+                    except AttributeError:
+                        pass
         return new_say
         
     
