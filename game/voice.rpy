@@ -1,23 +1,27 @@
-# INSTALLATION:
-# Installing this submod is fairly straightforward, but also highly involved.
-# Essentially, it goes as follows:
-# 1) Download this file (voice.rpy) into the game directory.
-# 2) Save https://raw.githubusercontent.com/python/cpython/2.7/Lib/Queue.py to the game/python-packages/ directory.
-# 3) Download the wheel (whl) file for pyttsx3 2.7 (Newer versions don't seem to work) from [https://pypi.org/project/pyttsx3/2.7/#files] and save it somewhere accessible.
-# 4) Open this file in an archive editor (whl files are .zips internally, so chainging the file extention to .zip is a
-# way to do it without addidional software on Windows).
-# 5) Within this archive, there should be a directory called pyttsx3. Extract this directory to game/python-packages/pyttsx3.
-# 6) This is the fun part: you have to find the valid voices for your system. If you find valid options for Windows or Mac,
-# please let me know so I can add them here (you can find me via the MASC Discord on the GitHub page of the mod, mention said
-# solution in the #submod-discussion channel and ping me there. At the moment, I use Linux which means I use espeak for
-# the actual voice, however this would represent a minority of users.
-# 6a) Windows: N/A, see above
-# 6b) Mac: N/A, see above
-# 6c) Linux: Install espeak via your package manager, then set the voice down below to "en-us+f2". (Note: you
-# can run `espeak -ven-us+f2 "Can you hear me?"` for a preview, and if you find a better voice it should work just as well.)
-# 7) Try it out! Open MAS, and see what happens. If everything went well, you should hear the voice of Monika greeting you.
-# If this doesn't happen, reach out to me as previously noted so I can fix the issue.
-# Enjoy Monika's newfound voice!
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+#
+#  voice.py
+#
+#  Copyright 2021 Thomas Castleman <contact@draugeros.org>
+#  
+#  Heavily Based upon Simple Text-To-Speech by @zombiepigdragon on GitHub: https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#  MA 02110-1301, USA.
+#
 
 init python in mas_tts:
     import subprocess
