@@ -4,7 +4,7 @@
 #  voice.py
 #
 #  Copyright 2021 Thomas Castleman <contact@draugeros.org>
-#  
+#
 #  Heavily Based upon Simple Text-To-Speech by @zombiepigdragon on GitHub: https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997
 #
 #  This program is free software; you can redistribute it and/or modify
@@ -33,18 +33,18 @@ init python in mas_tts:
     import re
     import time
     q = Queue()
-    
+
     base_dir = os.getcwd() # this script runs too early for the built in basedir var to work. We need our own.
-    
-    
+
+
     def get_wrapped_say(func):
         def new_say(who, what, interact=True, *args, **kwargs):
+            bypass = True
             if store.persistent._monika_TTS_enabled:
                 speaktext = renpy.substitute(what)
                 #Remove any tags that would sound bad but aren't important
                 #Regex causes an instant crash for some reason
                 if (("{fast}" not in speaktext) or ("chu" not in speaktext.lower())):
-                    bypass = False
                     # Implement emphasis
                     speaktext = speaktext.replace("{i}", "<emphasis>").replace("{b}", "<emphasis>")
                     speaktext = speaktext.replace("{/i}", "</emphasis>").replace("{/b}", "</emphasis>")
@@ -70,8 +70,8 @@ init python in mas_tts:
                     except AttributeError:
                         pass
         return new_say
-        
-    
+
+
     def say_loop():
         while True:
             if ((store.persistent._use_espeak) and (store.persistent._espeak_support)):
@@ -85,13 +85,13 @@ init python in mas_tts:
             say(q.get(), voice)
             q.task_done()
             time.sleep(0.01)
-    
+
     def say(text, voice):
         mimic_command = base_dir + "/game/Submods/Monika-TTS/Utilities/mimic"
-        
+
         if "win" in sys.platform:
             mimic_command = mimic_command + ".exe" # redirect to Windows executable on Windows
-            
+
         # use espeak when instructed
         if ((store.persistent._use_espeak) and (store.persistent._espeak_support)):
             command = ["espeak", "-v" + voice, "-m", text[0]]
@@ -107,8 +107,8 @@ init python in mas_tts:
             print("WARNING: espeak or mimic threw error or is not installed.")
             print("WARNING: please install espeak or mimic in order to get Text-To-Speech functionality")
         del voice, command
-        
-    
+
+
     t = Thread(target=say_loop)
     t.daemon = True
     t.start()

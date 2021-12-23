@@ -24,7 +24,7 @@ init -990 python in mas_submod_utils:
         author="Batcastle",
         name="Monika Text To Speech",
         description="Give Monika a voice!",
-        version="0.2.9",
+        version="0.3.0",
         settings_pane="monika_tts_settings"
     )
 
