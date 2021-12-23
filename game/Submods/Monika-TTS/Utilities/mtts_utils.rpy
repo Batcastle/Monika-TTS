@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
-#  utils.py
+#  mtts_utils.py
 #
 #  Copyright 2021 Thomas Castleman <contact@draugeros.org>
 #
@@ -47,7 +47,7 @@ screen monika_tts_settings():
                 selected persistent._monika_TTS_enabled
                 hovered SetField(submods_screen_tt, "value", tt_mtts_desc)
                 unhovered SetField(submods_screen_tt, "value", submods_screen_tt.default)
-                
+
             python:
                 persistent._espeak_support = False
                 if sys.platform.startswith('linux'):
@@ -64,8 +64,8 @@ screen monika_tts_settings():
                 else:
                     # not on Linux, no espeak
                     persistent._espeak_support = False
-                    
-                
+
+
             if bool(persistent._espeak_support):
                 style_prefix "check"
                 box_wrap False
@@ -83,6 +83,6 @@ screen monika_tts_settings():
                         unhovered SetField(submods_screen_tt, "value", submods_screen_tt.default)
 
 
-            
+
 default persistent._monika_TTS_enabled = True
 default persistent._use_espeak = False
