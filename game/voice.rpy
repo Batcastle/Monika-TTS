@@ -49,6 +49,30 @@ init python in mas_tts:
                     speaktext = speaktext.replace("{i}", "<emphasis>").replace("{b}", "<emphasis>")
                     speaktext = speaktext.replace("{/i}", "</emphasis>").replace("{/b}", "</emphasis>")
                     speaktext = speaktext.replace("~", "").replace("<3", "")
+                    speaktext = speaktext.replace("{/cps}", "")
+                    # we want to get the text speed for a future feature. So,
+                    # we need to parse it out, while preserving the NUMBER in
+                    # another var
+                    speaktext = speaktext.split("{cps")
+                    # doing the above will leave an equals sign at the beginging
+                    # of a string that was preceded by {cps=<number}
+                    default_speed = store.preferences.text_cps
+                    for each in enumerate(speaktext):
+                        if len(speaktext[each[0]]) < 1:
+                            continue
+                        if speaktext[each[0]][0] == "=":
+                            speaktext[each[0]] = list(speaktext[each[0]])
+                            for each1 in enumerate(speaktext[each[0]]):
+                                if speaktext[each[0]][each1[0]] == "}":
+                                    bracket = each1[0]
+                                    break
+                            speed = float("".join(speaktext[each[0]][1:bracket]))
+                            speaktext[each[0]] = speaktext[each[0]][bracket + 1:]
+                            speaktext[each[0]] = "".join(speaktext[each[0]])
+                    speaktext = "".join(speaktext)
+                    # old CPS speed is in default_speed
+                    # new CPS speed is in speed
+                    # We need to figure out a relationship between speech speed and CPS speed that can be used to scale speech speed
                     speaktext = re.split("{|}", speaktext) # we need to parse out wait calls
                     # Implement pauses
                     for each in enumerate(speaktext):
