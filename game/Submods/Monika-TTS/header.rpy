@@ -24,12 +24,15 @@ init -990 python in mas_submod_utils:
         author="Batcastle",
         name="Monika Text To Speech",
         description="Give Monika a voice!",
-        version="0.3.0",
+        version="0.3.1",
         settings_pane="monika_tts_settings"
     )
 
 init -989 python in mtts_utils:
     import store
+    import os
+    
+    base_dir = os.getcwd()
 
     #Register the updater if needed
     if store.mas_submod_utils.isSubmodInstalled("Submod Updater Plugin"):
@@ -38,6 +41,7 @@ init -989 python in mtts_utils:
             user_name="Batcastle",
             repository_name="Monika-TTS",
             tag_formatter=lambda x: x[x.index('v') + 1:],
-            update_dir="",
+            update_dir=base_dir + "/game",
             attachment_id=0,
+            redirected_files="game"
         )
