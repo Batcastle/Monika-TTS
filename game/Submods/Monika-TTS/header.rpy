@@ -31,7 +31,8 @@ init -990 python in mas_submod_utils:
 init -989 python in mtts_utils:
     import store
     import os
-    
+    import stat
+
     base_dir = os.getcwd()
 
     #Register the updater if needed
@@ -45,3 +46,12 @@ init -989 python in mtts_utils:
             attachment_id=0,
             redirected_files="game"
         )
+
+    # some other work that needs to be done.
+    # make sure Mimic is set as executable
+    linux_bin = base_dir + "/game/Submods/Monika-TTS/Utilities/mimic"
+    win_bin = linux_bin + ".exe"
+    st = os.stat(linux_bin)
+    os.chmod(linux_bin, st.st_mode | stat.S_IEXEC)
+    st = os.stat(win_bin)
+    os.chmod(win_bin, st.st_mode | stat.S_IEXEC)
