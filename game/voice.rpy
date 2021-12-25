@@ -54,9 +54,8 @@ init python in mas_tts:
                     # we need to parse it out, while preserving the NUMBER in
                     # another var
                     speaktext = speaktext.split("{cps")
-                    # doing the above will leave an equals sign at the beginging
-                    # of a string that was preceded by {cps=<number}
-                    default_speed = store.preferences.text_cps
+                    multiply = False
+                    speed = None
                     for each in enumerate(speaktext):
                         if len(speaktext[each[0]]) < 1:
                             continue
@@ -66,7 +65,11 @@ init python in mas_tts:
                                 if speaktext[each[0]][each1[0]] == "}":
                                     bracket = each1[0]
                                     break
-                            speed = float("".join(speaktext[each[0]][1:bracket]))
+                            speed = "".join(speaktext[each[0]][1:bracket])
+                            if speed[0] == "*":
+                                multiply = True
+                                speed = speed[1:]
+                            speed = float(speed)
                             speaktext[each[0]] = speaktext[each[0]][bracket + 1:]
                             speaktext[each[0]] = "".join(speaktext[each[0]])
                     speaktext = "".join(speaktext)
@@ -82,7 +85,8 @@ init python in mas_tts:
                     if "fast" not in speaktext:
                         speaktext = "".join([each for each in speaktext if not each.startswith("nw")])
                         if ((isinstance(speaktext, (str, unicode))) and ("chu" not in speaktext.lower())):
-                            q.put((speaktext, interact))
+                            new_speed = get_new_speed(speed, multiply)
+                            q.put((speaktext, interact, new_speed))
                     else:
                         bypass = True
             func(who, what, interact=interact, *args, **kwargs)
@@ -121,6 +125,9 @@ init python in mas_tts:
             command = ["espeak", "-v" + voice, "-m", text[0]]
         else:
             command = [mimic_command, "-voice", voice, "-t", text[0], "-ssml"]
+            if len(text) > 2:
+                if text[2] != 1:
+                    command = command + ["--setf", "duration_stretch=%s" % (text[2])]
         # put the speech in the background so menus don't lag, but in the foreground for normal conversations
         try:
             if text[1]:
@@ -131,6 +138,18 @@ init python in mas_tts:
             print("WARNING: espeak or mimic threw error or is not installed.")
             print("WARNING: please install espeak or mimic in order to get Text-To-Speech functionality")
         del voice, command
+
+    def get_new_speed(speed, multiply):
+        default_speed = 50
+        new_speed = 1
+        if speed is None:
+            return 1
+        if multiply:
+            new_speed = 1 / speed
+        else:
+            new_speed = default_speed / speed
+        return new_speed
+
 
 
     t = Thread(target=say_loop)
