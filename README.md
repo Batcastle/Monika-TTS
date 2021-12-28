@@ -1,8 +1,7 @@
 # Monika-TTS
 Text-To-Speech Submod for Monika After Story!
 
-Based off @zombiepigdragon's [Simple Text-To-Speech](https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997) submod.
-
+This submod is based off of @zombiepigdragon's [Simple Text-To-Speech](https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997). But, expands on it by switching to use the [Mimic Text-To-Speech Engine](https://github.com/MycroftAI/mimic1) by default (it does keep eSpeak support on Linux though). It also has the ability to be disabled or enabled at will in the submod settings menu, supports the Submod Updater Plugin, and more.
 
 ## NOTE
 ### Mimic
