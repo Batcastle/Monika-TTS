@@ -1,6 +1,8 @@
 # Monika-TTS
 Text-To-Speech Submod for Monika After Story!
 
+Based off @zombiepigdragon's [Simple Text-To-Speech](https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997) submod.
+
 
 ## NOTE
 ### Mimic
