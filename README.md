@@ -3,6 +3,15 @@ Text-To-Speech Submod for Monika After Story!
 
 This submod is based off of @zombiepigdragon's [Simple Text-To-Speech](https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997). But, expands on it by switching to use the [Mimic Text-To-Speech Engine](https://github.com/MycroftAI/mimic1) by default (it does keep eSpeak support on Linux though). It also has the ability to be disabled or enabled at will in the submod settings menu, supports the Submod Updater Plugin, and more.
 
+## Installation
+1. Navigate to the releases page
+2. Download the Monika-TTS.zip file for the latest release
+3. Extract the Monika-TTS.zip file you just downloaded
+4. **Merge** the game folder you extracted with the game folder in your Monika After Story installation
+5. Restart Monika After Story (Talk > Goodbye > "I'm going to restart")
+6. Profit $$$
+
+
 ## NOTE
 ### Mimic
 Mimic is too big to include the binaries for it in this GitHub repository. You can find the source code for it [here](https://github.com/MycroftAI/mimic1).
