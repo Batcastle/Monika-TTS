@@ -24,7 +24,7 @@ init -990 python in mas_submod_utils:
         author="Batcastle",
         name="Monika Text To Speech",
         description="Give Monika a voice!",
-        version="0.3.3",
+        version="0.3.4",
         settings_pane="monika_tts_settings"
     )
 
@@ -32,6 +32,7 @@ init -989 python in mtts_utils:
     import store
     import os
     import stat
+    import sys
 
     base_dir = os.getcwd()
 
@@ -49,9 +50,11 @@ init -989 python in mtts_utils:
 
     # some other work that needs to be done.
     # make sure Mimic is set as executable
-    linux_bin = base_dir + "/game/Submods/Monika-TTS/Utilities/mimic"
-    win_bin = linux_bin + ".exe"
-    st = os.stat(linux_bin)
-    os.chmod(linux_bin, st.st_mode | stat.S_IEXEC)
-    st = os.stat(win_bin)
-    os.chmod(win_bin, st.st_mode | stat.S_IEXEC)
+    base_path = "/game/Submods/Monika-TTS/Utilities/mimic"
+    if "win" in sys.platform:
+        base_path.replace("/", "\\")
+    path = base_dir + base_path
+    if "win" in sys.platform:
+        path = path + ".exe"
+    st = os.stat(path)
+    os.chmod(path, st.st_mode | stat.S_IEXEC)
