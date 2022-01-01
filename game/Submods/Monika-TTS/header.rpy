@@ -24,7 +24,7 @@ init -990 python in mas_submod_utils:
         author="Batcastle",
         name="Monika Text To Speech",
         description="Give Monika a voice!",
-        version="0.3.4",
+        version="0.3.5",
         settings_pane="monika_tts_settings"
     )
 
@@ -56,5 +56,8 @@ init -989 python in mtts_utils:
     path = base_dir + base_path
     if "win" in sys.platform:
         path = path + ".exe"
+    elif sys.platform.startswith("linux"):
+        path = path + ".bin"
+    # if not Linux or Windows, we're on MacOS
     st = os.stat(path)
     os.chmod(path, st.st_mode | stat.S_IEXEC)

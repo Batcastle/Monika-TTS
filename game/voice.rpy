@@ -105,7 +105,10 @@ init python in mas_tts:
             if ((store.persistent._use_espeak) and (store.persistent._espeak_support)):
                 voice = "en-us+f4"
             else:
-                voice = base_dir + "/game/Submods/Monika-TTS/Utilities/voices/cmu_us_ljm.flitevox" # SET THE VOICE HERE
+                base_path = "/game/Submods/Monika-TTS/Utilities/voices/cmu_us_ljm.flitevox"
+                if "win" in sys.platform:
+                    base_path.replace("/", "\\")
+                voice = base_dir + base_path # SET THE VOICE HERE
             if not store.persistent._monika_TTS_enabled:
                 # if not enabled, use as little CPU time as possible
                 time.sleep(3)
@@ -115,10 +118,14 @@ init python in mas_tts:
             time.sleep(0.01)
 
     def say(text, voice):
-        mimic_command = base_dir + "/game/Submods/Monika-TTS/Utilities/mimic"
-
+        base_path = "/game/Submods/Monika-TTS/Utilities/mimic"
         if "win" in sys.platform:
-            mimic_command = mimic_command + ".exe" # redirect to Windows executable on Windows
+            base_path.replace("/", "\\")
+        mimic_command = base_dir + base_path
+        if "win" in sys.platform:
+            mimic_command = mimic_command + ".exe"
+        elif sys.platform.startswith("linux"):
+            mimic_command = mimic_command + ".bin"
 
         # use espeak when instructed
         if ((store.persistent._use_espeak) and (store.persistent._espeak_support)):
