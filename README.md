@@ -4,9 +4,29 @@ Text-To-Speech Submod for Monika After Story!
 This submod is based off of @zombiepigdragon's [Simple Text-To-Speech](https://gist.github.com/zombiepigdragon/c68f556a5ccc2f99b32a9e8b87913997). But, expands on it by switching to use the [Mimic Text-To-Speech Engine](https://github.com/MycroftAI/mimic1) by default (it does keep eSpeak support on Linux though). It also has the ability to be disabled or enabled at will in the submod settings menu, supports the Submod Updater Plugin, and more.
 
 ## Support
-This submod is designed to be capabale of supporting Windows, Mac OS, and Linux. Unfortunetly, I do not have a Mac in order to compile the Text-To-Speech engine on. Because of that, this submod **will not work on Mac OS**. It WILL work on Windows and Linux. 
+### Linux
+Monika Text-To-Speech is primarily developed and tested on and for Linux. When it comes to support, Linux is a first class citizen with regards to Monika Text-To-Speech.
 
-Windows users, please know that every time Monika speaks a command prompt will temporarily pop up. We are investigating WHY this happens still and are trying to find a fix.
+### MacOS
+Monika Text-To-Speech SHOULD work just fine on MacOS, thanks to it's similarities to Linux. It does require it's own Text-To-Speech engine binary file though, so that increases the size of the submod.
+
+Early testing on MacOS in a virtual machine indicates some clipping may be present near the beginning of audio. This may or may not have been a result of the virtual machine environment.
+
+Feedback is greatly appreciated on MacOS.
+
+### Windows
+Windows is a weird beast. With using back slashes instead of forward slashes in file paths, to having it's own audio-backend, to the lack of built-in Python support, Windows has it out for this submod.
+
+That being said, Monika Text-To-Speech has been tested on Windows and is known working. However, please know that:
+ * It sometimes takes a while for speech to be played on Windows.
+ * a command prompt will temporarily pop up when speech is being played.
+
+Both these bugs are being investigated.
+
+### Other operating systems
+Other operating systems have not been tested or developed for. While we are open to supporting BSD distros in the future, that would require contributors who are familiar with BSD to contribute. Mimic may not even run on BSD distros. As such, at current time, Monika Text-To-Speech does not support BSD distros.
+
+There are no plans to support any other OSs in the future, this includes but is not limited to Haiku OS, React OS, and Temple OS.
 
 ## Installation
 1. Navigate to the releases page
