@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
-#  header.py
+#  header.rpy
 #
-#  Copyright 2021 Thomas Castleman <contact@draugeros.org>
+#  Copyright 2022 Thomas Castleman <contact@draugeros.org>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ init -990 python in mas_submod_utils:
         author="Batcastle",
         name="Monika Text To Speech",
         description="Give Monika a voice!",
-        version="0.3.5",
+        version="0.3.6",
         settings_pane="monika_tts_settings"
     )
 

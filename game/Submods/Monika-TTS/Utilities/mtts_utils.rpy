@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
-#  mtts_utils.py
+#  mtts_utils.rpy
 #
-#  Copyright 2021 Thomas Castleman <contact@draugeros.org>
+#  Copyright 2022 Thomas Castleman <contact@draugeros.org>
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
