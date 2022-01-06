@@ -18,15 +18,27 @@
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
+init 50 python:
+    #Reset ev
+    def intro_topic_mtts():
+        """
+        Readds the conditional and action to the nightmusic event
+        """
+        ev = mas_getEV('monika_can_talk')
+        ev.conditional=("True")
+        ev.action=EV_ACT_QUEUE
+
+    intro_topic_mtts()
+
+
 init 5 python:
     addEvent(
         Event(
             persistent.event_database,
             eventlabel="monika_can_talk",
             action=EV_ACT_QUEUE,
-            rules={"skip alert": None}
-        ),
-        restartBlacklist=True
+            conditional=("True")
+        )
     )
 
 label monika_can_talk:
