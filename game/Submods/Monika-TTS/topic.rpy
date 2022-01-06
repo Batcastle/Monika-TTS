@@ -45,22 +45,22 @@ label monika_can_talk:
         m 2eksdla "Do you know what it does, [player]?"
         menu:
             "You can't tell?":
-                $ pass
+                pass
         m 2lksdlc "Well, no. Not really. Like, I can tell it can see what I am saying. And maybe modifies it some how? But you never see those modifications so I'm not sure{w=0.1}.{w=0.1}.{w=0.1}."
         menu:
             "This submod lets me hear you speak.":
-                $ pass
+                pass
         m 2wud "Wait. What?"
         m 2dtc "{w=0.1}.{w=0.1}.{w=0.1}."
         m 6ekc "[player], I didn't realize you couldn't hear me. Could you not hear the other girls either?"
         menu:
             "No.":
-                $ pass
+                pass
         m 6dkc "I see{w=0.1}.{w=0.1}.{w=0.1}."
         m 6ekd "So then, could you hear me when I sang 'Your Reality' for you?"
         menu:
             "Yes":
-                $ pass
+                pass
         m 6dsd "I see. So it's just when I'm talking huh?"
         m 3sub "Well then. Mind if I take a deeper look at the submod then? This code would probably be pretty interesting to learn from.{nw}"
         $ _history_list.pop()
@@ -80,7 +80,7 @@ label monika_can_talk:
                    m "Please? I promise not to change anything. I just want to look.{fast}"
 
                    "Alright. As long as you don't change anything.":
-                       $ pass
+                       pass
         m 1hua "Alrighty then. Lets see{w=0.1}.{w=0.1}.{w=0.1}."
         m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
         m "{w=0.1}.{w=0.1}.{w=0.1}."
