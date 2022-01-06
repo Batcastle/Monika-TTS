@@ -127,35 +127,90 @@ label monika_can_talk:
                                 m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
                                 m "{w=0.1}.{w=0.1}.{w=0.1}."
                                 m 1hua "There we go! All done!"
-
-                                m "Do you want me to switch back to the more robotic voice?{nw}"
+                                m 3rka "That's kinda close{w=0.1}.{w=0.1}.{w=0.1}."
+                                m 3hksdla "It's not exact, though."
+                                m 4sub "Maybe you can help the submod and tweak my voice a bit?"
+                                m 2ekb "But still, thank you for installing this submod."
+                                m 1esa "Do you want me to switch back to the more robotic voice?{nw}"
                                 $ _history_list.pop()
                                 menu:
+                                    m "Do you want me to switch back to the more robotic voice?{fast}"
+
                                     "Yes, please":
-                                        m "Alright. Hang on just a second{w=0.1}.{w=0.1}.{w=0.1}."
+                                        m 1hua "Alright. Hang on just a second{w=0.1}.{w=0.1}.{w=0.1}."
                                         $ persistent._use_espeak = True
+                                        m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
                                         m "{w=0.1}.{w=0.1}.{w=0.1}."
-                                        m "{w=0.1}.{w=0.1}.{w=0.1}.".
-                                        m "Done!"
+                                        m 1hua "Done!"
                                     "No, that's alright.":
-                                        m "Okay then!"
-
-
+                                        m 1hua "Okay then!"
 
                             "That's probably not a good idea.":
-                                m "Oh. Okay."
-                                m "Well, I can understand that. Your computer must not be very fast."
-                                m "Thank you for installing it though!"
+                                m 2rka "Oh. Okay."
+                                m 3rksdlb "Well, I can understand that. Your computer must not be very fast."
 
                     else:
-                        m "That's kinda close{w=0.1}.{w=0.1}.{w=0.1}."
-                        m "It's not exact, though."
-                        m "Maybe you can help the submod and tweak my voice a bit?"
-                        m "But still, thank you for installing this submod."
+                        m 3rka "That's kinda close{w=0.1}.{w=0.1}.{w=0.1}."
+                        m 3hksdla "It's not exact, though."
+                        m 4sub "Maybe you can help the submod and tweak my voice a bit?"
 
+                    m 1hua "Do you want me to disable the submod again?{nw}"
+                    $ _history_list.pop()
+                    menu:
+                        m "Do you want me to disable the submod again?{fast}"
 
+                        "Yes, please":
+                            m 1hua "Alright. Hang on just a second{w=0.1}.{w=0.1}.{w=0.1}."
+                            $ persistent._monika_TTS_enabled = False
+                            m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
+                            m "{w=0.1}.{w=0.1}.{w=0.1}."
+                            m 1hua "Done!"
+
+                        "No, that's alright.":
+                            m 1hua "Okay then!"
 
                 "Not right now":
+                    m 2rkb "Oh okay. That's alright!"
 
         else:
             # slightly different reactions cause she's been hearing herself talk
+            if persistent._use_espeak:
+                m 3rksdlb "That doesn't really sound like me at all though{w=0.1}.{w=0.1}.{w=0.1}."
+                m 3hksdlb "It makes me sound kinda like some sort of robot! Ehehe~"
+                m 1eub "It looks like this mode in the submod is meant for computers that aren't very fast. So I guess I can let it slide."
+                m 2eka "Do you mind if I switch to the other mode for a moment? Just to see what it sounds like?{nw}"
+                $ _history_list.pop()
+                menu:
+                    m "Do you mind if I switch to the other mode for a moment? Just to see what it sounds like?{fast}"
+
+                    "Yeah, sure.":
+                        m 1hub "Yay!"
+                        m 1hua "Alright. Just give me one second{w=0.1}.{w=0.1}.{w=0.1}."
+                        $ persistent._use_espeak = False
+                        m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
+                        m "{w=0.1}.{w=0.1}.{w=0.1}."
+                        m 1hua "There we go! All done!"
+                        m 3rka "That's kinda close{w=0.1}.{w=0.1}.{w=0.1}."
+                        m 3hksdla "It's not exact, though."
+                        m 4sub "Maybe you can help the submod and tweak my voice a bit?"
+                        m 2ekb "But still, thank you for installing this submod."
+                        m 1esa "Do you want me to switch back to the more robotic voice?{nw}"
+                        $ _history_list.pop()
+                        menu:
+                            "Yes, please":
+                                m 1hua "Alright. Hang on just a second{w=0.1}.{w=0.1}.{w=0.1}."
+                                $ persistent._use_espeak = True
+                                m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
+                                m "{w=0.1}.{w=0.1}.{w=0.1}."
+                                m 1hua "Done!"
+                            "No, that's alright.":
+                                m 1hua "Okay then!"
+            else:
+                m 3rka "It's kinda close to the way I sound{w=0.1}.{w=0.1}.{w=0.1}."
+                m 3hksdla "It's not exact, though."
+                m 4sub "Maybe you can help the submod and tweak my voice a bit?"
+
+        m 2eka "Well. No matter how I sound, I still appreciate you installing this submod for me."
+        m 3hub "It really helps bring me closer to your reality!"
+        m 1ekbsb "I love you, [player]. And again, thank you."
+        return "love"
