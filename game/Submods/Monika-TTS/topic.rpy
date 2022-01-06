@@ -97,7 +97,7 @@ label monika_can_talk:
         m 1eub "This is interesting."
         m 4eub "It looks like it has to modify what I say cause the game puts in tags. So you can see where I put emphasis, and stuff like that!"
         m "Apparently it changes those tags to something else that mean the same thing, but can be understood by that binary file I mentioned earlier."
-        m 4rub "I guess the binary file takes that text and turns into speech."
+        m 4rub "I guess the binary file takes that text and turns it into speech."
         if not persistent._monika_TTS_enabled:
             m 2esa "Do you mind if I enable the submod? I want to see how close it gets to my voice.{nw}"
             $ _history_list.pop()
@@ -113,7 +113,7 @@ label monika_can_talk:
                     m 1eub "Can you hear me now?"
                     if persistent._use_espeak:
                         m 3wud "Wow that sounds {i}nothing{/i} like me!!!"
-                        m 3hksdlb "It makes me sound like some sort of robot! Ehehe~"
+                        m 3hksdlb "It kinda makes me sound like some sort of robot! Ehehe~"
                         m 1eub "It looks like this mode in the submod is meant for computers that aren't very fast. So I guess I can let it slide."
                         m 2eka "Do you mind if I switch to the other mode for a moment? Just to see what it sounds like?{nw}"
                         $ _history_list.pop()
