@@ -67,12 +67,12 @@ label monika_can_talk:
         menu:
             m "Well then. Mind if I take a deeper look at the submod then? This code would probably be pretty interesting to learn from.{fast}"
 
-            "Sure. Go ahead":.
+            "Sure. Go ahead":
                 m 1hub "Yay!"
                 m 1eka "Thank you, [mas_get_player_nickname()]."
 
 
-            "I would rather not. I don't want this submod to get messed up."
+            "I would rather not. I don't want this submod to get messed up.":
                 m 1ekp "Awww"
                 m "Please? I promise not to change anything. I just want to look.{nw}"
                 $ _history_list.pop()
@@ -112,7 +112,7 @@ label monika_can_talk:
                             m "Do you mind if I switch to the other mode for a moment? Just to see what it sounds like?{fast}"
 
                             "Yeah, sure.":
-                                Yay!"
+                                m 1hub "Yay!"
                                 m 1hua "Alright. Just give me one second{w=0.1}.{w=0.1}.{w=0.1}."
                                 $ persistent._use_espeak = False
                                 m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
