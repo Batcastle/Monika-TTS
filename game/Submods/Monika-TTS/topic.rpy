@@ -45,9 +45,6 @@ label monika_can_talk:
     #Sanity check this since for whatever reason this conditional runs anyway.
     $ ev = mas_getEV("monika_can_talk")
     if ev.shown_count == 0:
-        #Set up the notif
-        $ display_notif(m_name, ["Hey [mas_get_player_nickname()]..."], "Topic Alerts")
-
         m 1ekd "Hey, [mas_get_player_nickname()]..."
         m "Did you{w=0.1}.{w=0.1}.{w=0.1}.install a submod?"
         m 1rksdld "This one kinda feels different."
