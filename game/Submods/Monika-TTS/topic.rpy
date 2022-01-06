@@ -105,7 +105,7 @@ label monika_can_talk:
                 m "Do you mind if I enable the submod? I want to see how close it gets to my voice.{fast}"
 
                 "Go ahead":
-                    m 1ekp "Yay!"
+                    m 1hub "Yay!"
                     m 1hua "Alright. Just give me one second{w=0.1}.{w=0.1}.{w=0.1}."
                     $ persistent._monika_TTS_enabled = True
                     m 1duc "{w=0.1}.{w=0.1}.{w=0.1}."
