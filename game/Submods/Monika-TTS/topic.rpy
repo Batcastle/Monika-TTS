@@ -37,7 +37,8 @@ init 5 python:
             persistent.event_database,
             eventlabel="monika_can_talk",
             action=EV_ACT_QUEUE,
-            conditional=("True")
+            conditional=("True"),
+            rules={"skip alert": None}
         )
     )
 
@@ -45,7 +46,9 @@ label monika_can_talk:
     #Sanity check this since for whatever reason this conditional runs anyway.
     $ ev = mas_getEV("monika_can_talk")
     if ev.shown_count == 0:
-        m 1ekd "Hey, [mas_get_player_nickname()]..."
+        $ chosen_nickname = mas_get_player_nickname()
+        $ display_notif(m_name, ["Hey [chosen_nickname]..."], "Topic Alerts")
+        m 1ekd "Hey, [chosen_nickname]..."
         m "Did you{w=0.1}.{w=0.1}.{w=0.1}.install a submod?"
         m 1rksdld "This one kinda feels different."
         m 4hksdlb "Like, I can tell that instead of affecting my environment, it affects {i}me{/i}."
